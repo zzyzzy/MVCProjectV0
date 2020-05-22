@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- MVCInitController 자동실행 등록 -->
+    <servlet>
+        <servlet-name>MVCInit</servlet-name>
+        <servlet-class>siestageek.mvc.controller.MVCInitController</servlet-class>
+        <init-param>
+            <param-name>mvc_config</param-name>
+            <param-value>/WEB-INF/mvc.properties</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <!-- MVCController 실행 등록 -->
+    <!-- 클라이언트의 요청이 ~.do로 끝나는 경우
+         MVCController 서블릿이 받아서 처리함 -->
+    <servlet>
+        <servlet-name>mvcontroller</servlet-name>
+        <servlet-class>siestageek.mvc.controller.MVCController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvcontroller</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+</web-app>
